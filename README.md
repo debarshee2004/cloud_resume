@@ -1,2 +1,3 @@
-# dino_cloud
-A Cloud Project
+# DINO CLOUD: A Cloud Project
+
+![banner](./assets/images/banner.png)
