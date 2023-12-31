@@ -1,30 +1,40 @@
 using System.Net;
+using System.Text.Json;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
 
-namespace Api.Function
+namespace Api.Function;
+
+public class GetResumeCounter
 {
-    public class GetResumeCounter
+    private readonly ILogger<GetResumeCounter> _logger;
+    private readonly IResumeCounterService _resumeCounterService;
+
+    public GetResumeCounter(ILogger<GetResumeCounter> logger, IResumeCounterService resumeCounterService)
     {
-        private readonly ILogger _logger;
+        _logger = logger;
+        _resumeCounterService = resumeCounterService;
+    }
 
-        public GetResumeCounter(ILoggerFactory loggerFactory)
+    [Function("GetResumeCounter")]
+    public async Task<UpdatedCounter> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequestData req,
+    [CosmosDBInput("DebarsheeAzureResume","Counter", Connection = "CosmosDbConnectionString", Id = "index",
+            PartitionKey = "index")] Counter counter)
+    {
+
+
+        counter = _resumeCounterService.IncrementCounter(counter);
+
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        response.Headers.Add("Content-Type", "application/json; charset=utf-8");
+        string jsonString = JsonSerializer.Serialize(counter);
+        await response.WriteStringAsync(jsonString);
+
+        return new UpdatedCounter
         {
-            _logger = loggerFactory.CreateLogger<GetResumeCounter>();
-        }
-
-        [Function("GetResumeCounter")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequestData req)
-        {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-
-            var response = req.CreateResponse(HttpStatusCode.OK);
-            response.Headers.Add("Content-Type", "text/plain; charset=utf-8");
-
-            response.WriteString("Welcome to Azure Functions!");
-
-            return response;
-        }
+            NewCounter = counter,
+            HttpResponse = response
+        };
     }
 }
