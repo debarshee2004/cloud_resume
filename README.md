@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/images/azure.png" alt="logo" width="600" />
+  <img src="https://github.com/debarshee2004/cloud_resume/assets/129538241/3eba09d3-5509-40db-aebc-5f6b97e3f903" alt="logo" width="600" />
 </div>
 
 # Cloud Resume Challenge using Azure.
@@ -32,7 +32,7 @@ Key components of the Cloud Resume Challenge often include deploying a static we
 
 # Architecture of the Project.
 
-[![](https://app.eraser.io/workspace/CVaxS2XMBTPulDj2i09k/preview?elements=-QcFS67VkoJ3RrK3yyZuTQ&type=embed)](https://app.eraser.io/workspace/CVaxS2XMBTPulDj2i09k?elements=-QcFS67VkoJ3RrK3yyZuTQ)
+![](https://app.eraser.io/workspace/CVaxS2XMBTPulDj2i09k/preview?elements=-QcFS67VkoJ3RrK3yyZuTQ&type=embed)
 
 *Image shows the diagram of the architecture of the system*
 
