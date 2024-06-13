@@ -32,7 +32,7 @@ Key components of the Cloud Resume Challenge often include deploying a static we
 
 # Architecture of the Project.
 
-![](https://app.eraser.io/workspace/CVaxS2XMBTPulDj2i09k/preview?elements=-QcFS67VkoJ3RrK3yyZuTQ&type=embed)
+![](./assets/images/image.png)
 
 *Image shows the diagram of the architecture of the system*
 
